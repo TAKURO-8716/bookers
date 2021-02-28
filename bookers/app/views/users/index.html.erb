@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../stylesheets/application.css" />
+    <title>bookers</title>
+  </head>
+  <body>
+
+    <div class="home_flex">
+      <div class="top_left">
+        <h2>User info</h2>
+        <div>
+          <%= image_tag attachment_url(users_path, :image, :fill, 100, 100), class: "user_image" %> <!--(current_user.profile_image_url(:midium) ||-->
+        </div>
+        <table class="home_table">
+          <tr class="home_table_tr">
+            <th>name</th>
+            <th>
+              <%= current_user.name %>
+            </th>
+          </tr>
+          <tr class="home_table_tr">
+            <th>introduction</th>
+            <th>
+              <%= current_user.introduction %>
+            </th>
+          </tr>
+        </table>
+        <%= link_to edit_user_registration_path(current_user), class: "edit_btn" do %>
+          <i class="fas fa-wrench"></i>
+        <% end %>
+  
+        <h2 class="new_book">New book</h2>
+        <%= form_for(resource, as: resource_name, url: edit_user_registration_path(resource_name)) do |f| %>
+          <div class="new_book_title_wrap">
+            <!--<label for="" class="new_book_label">Title</label>-->
+            <%= f.label :title, "Title", class: "new_book_label" %>
+            <!--<input class="new_book_title" type="text" name="" id="" />-->
+            <%= f.text_field :title, class: "new_book_title" %>
+          </div>
+          <div class="new_book_opinion_wrap">
+            <!--<label for="" class="new_book_label">Opinion</label>-->
+            <%= f.label :opinion, "Opinion", class: "new_book_label" %>
+            <!--<textarea class="new_book_opinion" name="" id="" cols="30" rows="10"></textarea>-->
+            <%= f.text_area :opinion, class: "new_book_opinion" %>
+          </div>
+          <div>
+            <%= f.submit "Create Book", class: "create_book_btn" %>
+          </div>
+        <% end %>
+      </div>
+    
+    	<div class="top_right">
+    		<h2>Books</h2>
+    		<table class="main_table table">
+    			<thead class="main_table_head">
+    				<tr class="main_table_tr header_table">
+    				  <th></th>
+    					<th>Title</th>
+    					<th>Opinion</th>
+    					<th></th>
+    				</tr>
+    			</thead>
+    			<tbody class="main_table_body">
+    				<tr class="main_table_tr">
+    					<td>
+    						<%= image_tag "mini_no_image.jpg" %>
+    					</td>
+    					<td>
+    						<a href="">鬼滅の刃</a>
+    					</td>
+    					<td>
+    						<p>遊郭編が始まるよ！</p>
+    					</td>
+    					<td></td>
+    				</tr>
+    				
+    				<tr class="main_table_tr">
+    					<td>
+    						<%= image_tag "mini_no_image.jpg" %>
+    					</td>
+    					<td>
+    						<a href="">ジョジョの奇妙な冒険</a>
+    					</td>
+    					<td>
+    						<p>アニメは第５部までやっているよ！</p>
+    					</td>
+    					<td></td>
+    				</tr>
+    				
+    			</tbody>
+    		</table>
+    	</div>
+    	<small class="home_small">CopyRight Infratop.inc</small>
+    </div>
+
+  </body>
+</html>

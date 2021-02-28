@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header_inner">
+        <h1>Bookers</h1>
+        <nav class="header_nav">
+          <li class="heaeder_list">
+            <%= link_to users_path, class: "header_list_link" do %>
+              <i class="fas fa-home"></i> Home
+            <% end %>
+          </li>
+          <li class="heaeder_list">
+            <%= link_to "/home/about", class: "header_list_link" do %>
+            <i class="fas fa-user"></i> Users
+            <% end %>
+          </li>
+          <li class="heaeder_list">
+            <%= link_to "/home/about", class: "header_list_link" do %>
+            <i class="fas fa-book"></i> Books
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+          <li class="heaeder_list">
+            <%= link_to destroy_user_session_path, method: :delete, class: "header_list_link" do %>
+            <i class="fas fa-sign-out-alt"></i> logout
+            <% end %>
+          </li>
+          <% else %>
+          <li class="heaeder_list">
+            <%= link_to new_user_session_path, class: "header_list_link" do %>
+            <i class="fas fa-sign-in-alt"></i> login
+            <% end %>
+          </li>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    <%= yield %>
+  </body>
+</html>
